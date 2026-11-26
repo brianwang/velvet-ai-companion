@@ -1,8 +1,8 @@
 # Velvet — AI Companion Bot for Telegram
 
-An 18+ AI companion product built and operated solo: 11 characters, persistent memory, generated portraits and voices, a Telegram Mini App, Stars subscriptions, bilingual UX, moderation, and a separate support bot.
+An AI companion product built and operated solo: 11 characters, persistent memory, generated portraits and voices, a Telegram Mini App, Stars subscriptions, bilingual UX, moderation, and a separate support bot.
 
-> **Status:** live, early stage. This repo is a **case study** — the production source is private. All images below are AI-generated adults.
+> **Status:** live, early stage. This repo is a **case study** — the production source is private. All images below are AI-generated.
 
 ![Telegram](https://img.shields.io/badge/Telegram-Bot%20API-2CA5E0)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB)
@@ -29,7 +29,7 @@ An 18+ AI companion product built and operated solo: 11 characters, persistent m
 - **Telegram Mini App**: character gallery, plan cards, character switching, Stars checkout
 - **Stars subscriptions**: free daily quota → paywall → 30/90-day plans
 - **Bilingual by default**: replies follow the user’s language (zh / en / ja); UI, commands, terms and support bot are localized
-- **Safety & moderation**: 18+ gate, PII redaction before storage/model, risk-keyword alerts, ban/unban, refund flow for delivery failures
+- **Safety & moderation**: age gate, PII redaction before storage/model, risk-keyword alerts, ban/unban, refund flow for delivery failures
 - **Ops automation**: scheduled channel posts, daily ops report, separate support bot
 
 ---
@@ -76,7 +76,7 @@ flowchart LR
 
 **Billing without a payment backend.** Telegram Stars invoices are created from plan definitions; successful payments extend a global subscription shared by all characters. Test purchases are tagged so they don’t pollute conversion metrics. Refunds are manual (`refundStarPayment`) and only for delivery failures — that policy is written into the paywall, invoice description and `/terms`.
 
-**Moderation is code, not vibes.** The 18+ gate is enforced before any model call; PII is redacted before writing to the DB; risk keywords trigger an admin alert (not an automatic ban); banned users are blocked before commands are parsed. Content rules live in a single persona module, and the test suite exercises boundary prompts.
+**Moderation is code, not vibes.** The age gate is enforced before any model call; PII is redacted before writing to the DB; risk keywords trigger an admin alert (not an automatic ban); banned users are blocked before commands are parsed. Content rules live in a single persona module, and the test suite exercises boundary prompts.
 
 **Ops as code.** A channel bot posts on a schedule, a daily report summarizes new users, starts, messages, paywall hits, payments and feature usage, and a separate support bot forwards user messages to the admin with `/reply`, `/lookup` and `/pending`.
 
@@ -107,7 +107,7 @@ run_support.py       support bot entrypoint
 
 ## Compliance
 
-- **18+ only.** Age gate before any conversation; product copy states it.
+- **Age-gated.** A verification step before any conversation; product copy states it.
 - **AI disclosure.** Characters are AI; users are told the truth if they ask.
 - **No minors.** Characters are 22–30; prompts and partner criteria explicitly exclude school/minor themes.
 - **No real people.** Characters, images and voices are synthetic.
